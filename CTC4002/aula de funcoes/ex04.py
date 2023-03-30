@@ -1,7 +1,7 @@
 from math import pi
 
 def volEsfera(r):
-    return (4/3) * r * pi
+    return (4/3) * r**3 * pi
 
 def volCubo(a):
     return a**3
