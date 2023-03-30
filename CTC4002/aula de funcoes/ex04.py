@@ -6,10 +6,9 @@ def volEsfera(r):
 def volCubo(a):
     return a**3
 
-def vazio(cubo, esfera):
-    return cubo - esfera
+def vazio(cubo):
+    return cubo -volEsfera(a/4)*8
 
-r = float(input('insira o raio da esfera: '))
 a = float(input('insira a aresta do cubo: '))
 
-print(f'o espaco vazio no dado cubo é: {vazio(volCubo(a),volEsfera(r)):.2f}')
+print(f'o espaco vazio no dado cubo é: {vazio(volCubo(a)):.2f}')
