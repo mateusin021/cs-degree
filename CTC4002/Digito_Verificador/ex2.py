@@ -1,5 +1,3 @@
-import math
-
 def calc_dv_int(digitos):
     a = digitos //1000
     bc =(digitos//10)%100
