@@ -1,0 +1,1 @@
+rodar apenas os arquivos "main.py" e "graficos.py", todos os outros sao apenas bibliotecas 
