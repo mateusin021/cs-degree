@@ -4,11 +4,12 @@ width = 800  #Largura Janela
 height = 600 #Altura Janela
 
 def load():
-    global sys_font, clock, px, sol, horario
+    global sys_font, clock, px, sol, horario, corAstro
     sys_font = pygame.font.Font(pygame.font.get_default_font(), 20)
     clock = pygame.time.Clock()
     px = 0
     sol=600
+    corAstro = (255, 255, 0)
     horario = (51, 204, 255)
     global gomes
     gomes = pygame.image.load('manoel.png')
@@ -20,7 +21,7 @@ def draw_screen(screen):
     pygame.draw.rect(screen, (255, 204, 102), (0, 400, 800, 800))
     pygame.draw.polygon(screen,(204, 153, 0), [(450, 400), (550, 400),(500, 300)])
     pygame.draw.polygon(screen,(204, 153, 0), [(550, 400), (650, 400),(600, 350)])
-    pygame.draw.circle(screen, (255, 255, 0), (sol, 200), 50)
+    pygame.draw.circle(screen, corAstro, (sol, 200), 50)
     pygame.draw.rect(screen, (204, 102, 0), (300, 340, 60, 60))
     pygame.draw.rect(screen, (128, 0, 0), (330, 380, 10, 20))
     pygame.draw.rect(screen, (204, 102, 0), (150, 340, 60, 60))
@@ -33,7 +34,7 @@ def nuvens():
     pygame.draw.circle(screen, (255,255,255), (40+px, 150), 30)
 
 def update(dt):
-    global px, sol, horario
+    global px, sol, horario, corAstro
     keys = pygame.key.get_pressed()
     
     if px < width:
@@ -56,10 +57,13 @@ def update(dt):
     tarde = (width*2)/3
     if sol <=manha:
         horario = (51, 204, 255)
+        corAstro = (255, 255, 0)
     elif sol <= tarde:
         horario = (36, 75, 214)
+        corAstro = (255, 255, 0)
     else: 
         horario = (7, 24, 82)
+        corAstro = (217, 217, 217)
        
 
 def main_loop(screen):
