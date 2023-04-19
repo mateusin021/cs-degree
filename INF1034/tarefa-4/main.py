@@ -4,10 +4,11 @@ width = 800  #Largura Janela
 height = 600 #Altura Janela
 
 def load():
-    global sys_font, clock, px, sol, horario, corAstro
+    global sys_font, clock, px, sol, horario, corAstro, p
     sys_font = pygame.font.Font(pygame.font.get_default_font(), 20)
     clock = pygame.time.Clock()
-    px = 0
+    px = 30
+    p=1
     sol=600
     corAstro = (255, 255, 0)
     horario = (51, 204, 255)
@@ -34,11 +35,16 @@ def nuvens():
     pygame.draw.circle(screen, (255,255,255), (40+px, 150), 30)
 
 def update(dt):
-    global px, sol, horario, corAstro
+    global px, sol, horario, corAstro, p 
     keys = pygame.key.get_pressed()
     
-    if px < width:
-        px=px+(0.1*dt)
+
+    #movimento nuvens
+    px=px+(0.1*dt*p)
+    
+    if px <=30 or px >= width-60:
+       p *= -1
+    
 
     #movimento sol
     if keys[pygame.K_RIGHT]:
@@ -47,10 +53,6 @@ def update(dt):
     if keys[pygame.K_LEFT]:
        sol = sol - (0.1 * dt)
 
-    #movimento nuvens
-    if px > width-30:
-       px = 0
-    
     # horarios do dia
 
     manha = width/3
