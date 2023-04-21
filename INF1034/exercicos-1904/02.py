@@ -3,8 +3,7 @@ def geraForca(palavra):
     i = 0
     for letra in palavra:
         forca[i] = {"letra": letra,"revealed": False}
-        i+=1
-    
+        i+=1   
     return forca
 
 def formataForca(objForca):
@@ -15,8 +14,6 @@ def formataForca(objForca):
         else:
             stringForca += objForca[i]["letra"]
     return stringForca
-
-
 
 try:
     palavra = input('insira a palavra: ')
@@ -34,7 +31,6 @@ try:
                 if forca[i]["letra"] == letra:
                     forca[i]["revealed"] =True
                     faltantes -=1
-
         else:
             vidas -= 1
     print('parabens voce completou a forca!')

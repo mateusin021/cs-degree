@@ -22,18 +22,26 @@ def draw_screen(screen):
     pygame.draw.rect(screen, (255, 204, 102), (0, 400, 800, 800))
     pygame.draw.polygon(screen,(204, 153, 0), [(450, 400), (550, 400),(500, 300)])
     pygame.draw.polygon(screen,(204, 153, 0), [(550, 400), (650, 400),(600, 350)])
-    pygame.draw.circle(screen, corAstro, (sol, 200), 50)
     pygame.draw.rect(screen, (204, 102, 0), (300, 340, 60, 60))
     pygame.draw.rect(screen, (128, 0, 0), (330, 380, 10, 20))
     pygame.draw.rect(screen, (204, 102, 0), (150, 340, 60, 60))
     pygame.draw.rect(screen, (128, 0, 0), (170, 380, 10, 20))
-    nuvens()
+    
     screen.blit(gomes, (350,200))
 def nuvens():
     pygame.draw.circle(screen, (255,255,255), (px, 150), 30)
     pygame.draw.circle(screen, (255,255,255), (20+px, 150), 30)
     pygame.draw.circle(screen, (255,255,255), (40+px, 150), 30)
 
+def solzin():
+    pygame.draw.circle(screen, corAstro, (sol, 100), 30)
+    pygame.draw.line(screen, corAstro, (sol, 50), (sol, 150), 5)
+    pygame.draw.line(screen, corAstro, (sol-50, 100), (sol+50, 100), 5)
+    pygame.draw.line(screen, corAstro, (sol-40, 140), (sol+40, 60), 7)
+    pygame.draw.line(screen, corAstro, (sol-40, 60), (sol+40, 140), 7)
+
+def lua():
+    pygame.draw.circle(screen, corAstro, (sol, 100), 30)
 def update(dt):
     global px, sol, horario, corAstro, p 
     keys = pygame.key.get_pressed()
@@ -53,6 +61,13 @@ def update(dt):
     if keys[pygame.K_LEFT]:
        sol = sol - (0.1 * dt)
 
+    # limite sol
+    if sol > width:
+        sol = width -20
+
+    elif sol < 0:
+        sol = 20
+
     # horarios do dia
 
     manha = width/3
@@ -60,13 +75,18 @@ def update(dt):
     if sol <=manha:
         horario = (51, 204, 255)
         corAstro = (255, 255, 0)
+        solzin()
+        nuvens()
     elif sol <= tarde:
         horario = (36, 75, 214)
         corAstro = (255, 255, 0)
+        solzin()
+        nuvens()
     else: 
         horario = (7, 24, 82)
         corAstro = (217, 217, 217)
-       
+        lua()
+        nuvens()
 
 def main_loop(screen):
     running = True
